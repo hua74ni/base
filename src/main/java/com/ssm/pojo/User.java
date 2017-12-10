@@ -13,6 +13,7 @@ public class User implements Serializable{
     private String usercode;
     private String username;
     private String password;
+    private String email;
     private String salt;
     private int locked;
 
@@ -83,5 +84,13 @@ public class User implements Serializable{
 
     public void setMenus(List<SysPermission> menus) {
         this.menus = menus;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
