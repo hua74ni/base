@@ -2,6 +2,7 @@ package com.ssm.controller;
 
 import com.ssm.pojo.User;
 import com.ssm.service.UserService;
+import com.ssm.utils.AjaxResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,28 +29,27 @@ public class LoginController {
     private UserService userService;
 
     @RequestMapping("/login")
-    public Map<String,Object> login(HttpServletRequest request, @RequestBody User user){
-        Map<String,Object> map = new HashMap<String, Object>();
+    public AjaxResult login(HttpServletRequest request, @RequestBody User user){
+        AjaxResult ajaxResult = AjaxResult.SUCCESS;
 
 //        临时存放验证码
         String strCode = (String) request.getSession().getAttribute("strCode");
         String authCode = (String) request.getSession().getAttribute("authCode");
 
-        map.put("code",1);
-
-        if(authCode.equals(strCode)){
-            try {
-                User loginUser = userService.login(user);
-                request.getSession().setAttribute("loginUser",loginUser);
-            } catch (Exception e) {
-                e.printStackTrace();
-                map.put("code",2);
-            }
-        }else{
-            map.put("code",5);
+        if(!authCode.equals(strCode)){
+            ajaxResult = new AjaxResult(AjaxResult.STATUS_ERROR,"验证码输入错误");
+            return ajaxResult;
         }
 
-        return map;
+        try {
+            User loginUser = userService.login(user);
+            request.getSession().setAttribute("loginUser",loginUser);
+        } catch (Exception e) {
+            e.printStackTrace();
+            ajaxResult = new AjaxResult(AjaxResult.STATUS_ERROR,"账号或密码错误");
+        }
+
+        return ajaxResult;
     }
 // 用户退出
     @RequestMapping("/logout")

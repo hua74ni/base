@@ -1,6 +1,7 @@
 package com.ssm.controller;
 
 import com.ssm.service.UserService;
+import com.ssm.utils.AjaxResult;
 import com.ssm.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,7 +24,8 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("/userList")
-    public @ResponseBody Map<String,Object> queryUserPage(UserVo userVo,
+    @ResponseBody
+    public Map<String,Object> queryUserPage(UserVo userVo,
                          @RequestParam(required = false,name = "order[0][column]") String order_column,
                          @RequestParam(required = false,name = "order[0][dir]") String order_column_dir,
                          @RequestParam(required = false,name = "search[value]") String username){
@@ -46,26 +48,17 @@ public class UserController {
         return map;
     }
 
-
-
     @RequestMapping("/deleteUser")
     @ResponseBody
-    public Map<String,Object> deleteUser(@RequestBody String id){
+    public AjaxResult deleteUser(@RequestBody String id){
 
-        Map<String,Object> map = new HashMap<String, Object>();
+        AjaxResult ajaxResult = AjaxResult.SUCCESS;
 
         System.out.println("删除ID"+id);
 
-        map.put("code",1);
-
-        return map;
-
+        return ajaxResult;
 
     }
-
-
-
-
 
 
 

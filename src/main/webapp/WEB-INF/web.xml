@@ -3,7 +3,7 @@
          xmlns="http://java.sun.com/xml/ns/javaee"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          id="WebApp_ID" version="2.5">
-    <display-name>mySSM</display-name>
+    <display-name>health_treatment</display-name>
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
@@ -44,6 +44,6 @@
     </filter-mapping>
 
     <welcome-file-list>
-        <welcome-file>/welcome.jsp</welcome-file>
+        <welcome-file>/login.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

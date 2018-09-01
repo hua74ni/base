@@ -1,5 +1,6 @@
 package com.ssm.mapper;
 
+import com.ssm.TkMapper.CustomMapper;
 import com.ssm.pojo.SysPermission;
 import com.ssm.pojo.User;
 import com.ssm.vo.UserVo;
@@ -11,16 +12,16 @@ import java.util.List;
  * Created by huangdonghua on 2017/11/5.
  */
 
-public interface UserMapper {
+public interface UserMapper extends CustomMapper<User> {
 
-    public List<User> queryUserPage(@Param("userVo") UserVo userVo);
+    List<User> queryUserPage(@Param("userVo") UserVo userVo);
 
-    public int queryUserTotal(@Param("userVo") UserVo userVo);
+    int queryUserTotal(@Param("userVo") UserVo userVo);
 
-    public User queryUserByUserCode(@Param("usercode") String usercode);
+    User queryUserByUserCode(@Param("usercode") String usercode);
 
-    public List<SysPermission> queryPermissionByUserId(@Param("userId") String userId);
+    List<SysPermission> queryPermissionByUserId(@Param("userId") String userId);
 
-    public List<SysPermission> queryMenuByUserId(@Param("userId") String userId);
+    List<SysPermission> queryMenuByUserId(@Param("userId") String userId);
 
 }

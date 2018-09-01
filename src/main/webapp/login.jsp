@@ -47,22 +47,21 @@
 		$.ajax({
 			url : "${pageContext.request.contextPath}/login.do",
 			type : "post",
+            data : jsonData,
 			contentType : "application/json",
 			data : JSON.stringify(jsondata),
 			success : function(data){
 			    console.log(data);
-				if(data.code == 1){
+				if(data.statusCode == 200){
 					alert("登录成功, 欢迎回来！");
-                    <%--$.post("${pageContext.request.contextPath}/main.do");--%>
 					window.location.href="${pageContext.request.contextPath}/main.do";
-				}else if(data.code == 2){
-					alert("账号或密码错误！");
-				}else{
-					alert("验证码输入错误！");
+				}else if(data.code == 300){
+					alert(data.message);
 				}
 				chageCode();
 			},
 			error : function(data){
+                chageCode();
 				alert("出现异常！");
 			}
  		});

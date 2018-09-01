@@ -35,13 +35,14 @@ public class LoginInterceptor implements HandlerInterceptor {
 
         User user = (User) request.getSession().getAttribute("loginUser");
         if(user != null && !user.getId().equals("")){
-            List<SysPermission> permissions = user.getPermissions();
-            for (SysPermission permissionURL:
-                 permissions) {
-                if(url.indexOf(permissionURL.getUrl()) >= 0){
-                    return true;
-                }
-            }
+            return true;
+//            List<SysPermission> permissions = user.getPermissions();
+//            for (SysPermission permissionURL:
+//                 permissions) {
+//                if(url.indexOf(permissionURL.getUrl()) >= 0){
+//                    return true;
+//                }
+//            }
         }else {
             request.getRequestDispatcher("/login.jsp").forward(request, response);
         }

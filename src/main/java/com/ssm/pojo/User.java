@@ -1,5 +1,8 @@
 package com.ssm.pojo;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,20 +10,30 @@ import java.util.List;
 /**
  * Created by huangdonghua on 2017/11/5.
  */
+@Table(name = "sys_user")
 public class User implements Serializable{
 
+    @Id
+    @Column(name = "user_id")
     private String id;
-    private String usercode;
-    private String username;
-    private String password;
-    private String email;
-    private String salt;
-    private int locked;
 
-    //用户菜单
-    private List<SysPermission> menus = new ArrayList<SysPermission>();
-    //用户权限
-    private List<SysPermission> permissions = new ArrayList<SysPermission>();
+    @Column(name = "usercode")
+    private String usercode;
+
+    @Column(name = "usercode")
+    private String username;
+
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "salt")
+    private String salt;
+
+    @Column(name = "locked")
+    private int locked;
 
     public String getId() {
         return id;
@@ -68,22 +81,6 @@ public class User implements Serializable{
 
     public void setLocked(int locked) {
         this.locked = locked;
-    }
-
-    public List<SysPermission> getPermissions() {
-        return permissions;
-    }
-
-    public void setPermissions(List<SysPermission> permissions) {
-        this.permissions = permissions;
-    }
-
-    public List<SysPermission> getMenus() {
-        return menus;
-    }
-
-    public void setMenus(List<SysPermission> menus) {
-        this.menus = menus;
     }
 
     public String getEmail() {

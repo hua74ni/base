@@ -55,8 +55,8 @@ public class UserServiceImpl implements UserService {
             if(loginUser.getPassword().equals(password)){
                 List<SysPermission> permissions = userMapper.queryPermissionByUserId(loginUser.getId());
                 List<SysPermission> menus = userMapper.queryMenuByUserId(loginUser.getId());
-                loginUser.setPermissions(permissions);
-                loginUser.setMenus(menus);
+//                loginUser.setPermissions(permissions);
+//                loginUser.setMenus(menus);
                 return loginUser;
             }else{
                 throw new RuntimeException("账号或密码错误");
